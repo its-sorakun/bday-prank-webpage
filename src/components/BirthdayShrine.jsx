@@ -5,17 +5,24 @@
  * and pirate/manga meme accolades with interactive celebratory triggers.
  */
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 export default function BirthdayShrine({ recipientName, recipientNickname, age, onTriggerConfetti, onShake }) {
   const [activeToast, setActiveToast] = useState('');
   const [timeFrozen, setTimeFrozen] = useState(false);
+  const [paimonPopupOpen, setPaimonPopupOpen] = useState(false);
+  const toastTimeoutRef = useRef(null);
 
   const showToast = (msg) => {
     if (navigator.vibrate) navigator.vibrate(50);
     if (onShake) onShake();
+    if (toastTimeoutRef.current) {
+      clearTimeout(toastTimeoutRef.current);
+    }
     setActiveToast(msg);
-    setTimeout(() => setActiveToast(''), 3800);
+    toastTimeoutRef.current = setTimeout(() => {
+      setActiveToast('');
+    }, 4500);
   };
 
   const handleZaWarudo = () => {
@@ -160,8 +167,12 @@ export default function BirthdayShrine({ recipientName, recipientNickname, age, 
             <button
               type="button"
               className="win-btn"
-              onClick={() => showToast('🧚 Jotaro Paimon: "Yare Yare Daze... May all your future torrents have 100+ seeders and zero Qiqis!"')}
-              style={{ fontSize: '0.82rem' }}
+              onClick={() => {
+                if (onShake) onShake();
+                if (navigator.vibrate) navigator.vibrate(50);
+                setPaimonPopupOpen(true);
+              }}
+              style={{ fontSize: '0.82rem', background: '#e0e7ff', color: '#3730a3', fontWeight: 'bold' }}
             >
               🧚 Consult Paimon
             </button>
@@ -172,17 +183,95 @@ export default function BirthdayShrine({ recipientName, recipientNickname, age, 
               marginTop: '12px',
               background: '#fae8ff',
               border: '2px solid #d946ef',
-              padding: '8px',
+              padding: '8px 12px',
               fontSize: '0.82rem',
               color: '#86198f',
               fontWeight: 'bold',
-              animation: 'shake 0.3s'
+              animation: 'shake 0.3s',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: '8px'
             }}>
-              {activeToast}
+              <span>{activeToast}</span>
+              <button
+                type="button"
+                onClick={() => setActiveToast('')}
+                style={{
+                  background: 'transparent',
+                  border: 'none',
+                  color: '#86198f',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',
+                  fontSize: '1rem',
+                  lineHeight: '1'
+                }}
+              >
+                ✕
+              </button>
             </div>
           )}
         </div>
       </div>
+
+      {/* Persistent Jotaro Paimon Dialogue Window */}
+      {paimonPopupOpen && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'rgba(0,0,0,0.5)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 99999,
+          padding: '12px'
+        }}>
+          <div className="win-window" style={{
+            width: '340px',
+            maxWidth: '94vw',
+            boxShadow: '6px 6px 0px rgba(0,0,0,0.8)',
+            margin: '0 auto'
+          }}>
+            <div className="win-titlebar" style={{ background: 'linear-gradient(90deg, #4c1d95, #6d28d9)' }}>
+              <div className="win-title-left">
+                <span>🧚‍♂️</span>
+                <span>JOTARO PAIMON ADVICE • {recipientNickname}</span>
+              </div>
+              <div className="win-title-btn" onClick={() => setPaimonPopupOpen(false)}>✕</div>
+            </div>
+
+            <div className="win-body" style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: '3.2rem', margin: '4px 0 8px' }}>🧚‍♂️🧢</div>
+              <div className="win-inset" style={{ background: '#fdf4ff', border: '2px solid #c084fc', marginBottom: '12px' }}>
+                <p style={{ fontWeight: '900', color: '#581c87', fontSize: '0.92rem', marginBottom: '6px' }}>
+                  "Yare Yare Daze, {recipientNickname}..."
+                </p>
+                <p style={{ fontSize: '0.82rem', color: '#3b0764', lineHeight: '1.45' }}>
+                  May all your future 1337x torrents have 100+ seeders, your shrimp spine uncurl, and may you never lose a 50/50 to Qiqi ever again! Paimon commands you to have an epic birthday!
+                </p>
+              </div>
+
+              <button
+                type="button"
+                className="win-btn win-btn-primary"
+                onClick={() => setPaimonPopupOpen(false)}
+                style={{
+                  width: '100%',
+                  padding: '10px',
+                  fontSize: '0.88rem',
+                  background: '#6d28d9',
+                  color: '#fff'
+                }}
+              >
+                ⭐️ ARIGATO, PAIMON! (CLOSE)
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Dank Meme Accolades Container */}
       <div className="win-window" style={{ maxWidth: '650px', marginTop: '14px' }}>
