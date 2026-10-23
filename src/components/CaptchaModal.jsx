@@ -1,22 +1,21 @@
 /*
- * Stage 2: Human Verification CAPTCHA and chaotic age selector.
- * Presents a 3x3 grid of relatable late-night developer/student degenerate habits.
- * Fails validation regardless of selection to simulate an impossible Turing test.
- * Features an unstable age slider with fluctuating multipliers.
+ * Stage 2: JoJo D'Arby Casino verification challenge and Hamon calibration slider.
+ * Presents a 3x3 grid of iconic JoJo references, manga habits, and shrimp posture behaviors.
+ * Features D'Arby soul gamble rejections and JoJo part-themed power calibration.
  */
 
 import { useState } from 'react';
 
-const CAPTCHA_TILES = [
-  { id: 1, label: 'Doomscrolling reels at 3:42 AM', icon: '📱' },
-  { id: 2, label: 'Remembering embarrassing memory from 2017', icon: '🧠' },
-  { id: 3, label: 'Black coffee instead of breakfast', icon: '☕' },
-  { id: 4, label: 'Setting 12 alarms spaced 3 mins apart', icon: '⏰' },
-  { id: 5, label: 'Staring blankly at ceiling at 4:15 AM', icon: '👁️' },
-  { id: 6, label: 'Midnight kitchen raid for shredded cheese', icon: '🧀' },
-  { id: 7, label: 'Sleeping 13 hours and waking up more tired', icon: '🛌' },
-  { id: 8, label: 'Watching 3-hour video essay on Roman concrete', icon: '🏛️' },
-  { id: 9, label: 'Saying "Just one more match" at 2:30 AM', icon: '🎮' },
+const JOJO_CAPTCHA_TILES = [
+  { id: 1, label: 'Bizarre pose in bathroom mirror', icon: '🕺' },
+  { id: 2, label: 'Saying "Oh? You\'re approaching me?" to a bug', icon: '🚶' },
+  { id: 3, label: 'Inspecting doorknobs for Killer Queen', icon: '💣' },
+  { id: 4, label: 'Screaming ZA WARUDO when Wi-Fi lags', icon: '⏳' },
+  { id: 5, label: 'Pirating 400GB of manga on qBittorrent', icon: '📂' },
+  { id: 6, label: 'Licking a cherry at 600 RPM (Rero Rero)', icon: '🍒' },
+  { id: 7, label: 'Shrimp posture so curved it counts as a pose', icon: '🦐' },
+  { id: 8, label: 'Losing 50/50 in Genshin and blaming Dio', icon: '🧛' },
+  { id: 9, label: 'Asking "Is that a JoJo reference?!"', icon: '❓' },
 ];
 
 export default function CaptchaModal({ recipientName, recipientNickname, initialAge = 22, onComplete, onShake }) {
@@ -26,7 +25,7 @@ export default function CaptchaModal({ recipientName, recipientNickname, initial
   const [age, setAge] = useState(initialAge);
 
   const toggleTile = (id) => {
-    if (navigator.vibrate) navigator.vibrate(20);
+    if (navigator.vibrate) navigator.vibrate(25);
     setSelectedTiles((prev) =>
       prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
     );
@@ -40,10 +39,10 @@ export default function CaptchaModal({ recipientName, recipientNickname, initial
     setFailCount(newFails);
 
     const errors = [
-      '❌ VERIFICATION FAILED: Zero healthy sleep schedules detected.',
-      '❌ INCORRECT: User biometric pattern matches chronic caffeine consumer.',
-      '❌ FAILED: Algorithm detected high probability of scrolling TikTok until sunrise.',
-      '❌ CAPTCHA REJECTED: Akshat Sinha (AKS) has never once gone to bed at 10:00 PM.',
+      '❌ D\'ARBY: "GOOD! Your bet is invalid! You did not pose hard enough!"',
+      '❌ FAILED: Star Platinum analyzed your spine and detected critical shrimp posture.',
+      '❌ INCORRECT: 0 Seeders detected on your Hamon network connection.',
+      '❌ KONO DIO DA: D\'Arby turned your birthday token into a poker chip!',
     ];
 
     setErrorMessage(errors[newFails % errors.length]);
@@ -51,29 +50,31 @@ export default function CaptchaModal({ recipientName, recipientNickname, initial
 
   const handleAgeChange = (e) => {
     const rawVal = parseInt(e.target.value, 10);
-    // Add jitter to make slider feel cursed and chaotic
-    const jitter = Math.floor((Math.random() - 0.45) * 6);
-    const clamped = Math.max(18, Math.min(99, rawVal + jitter));
+    const jitter = Math.floor((Math.random() - 0.45) * 4);
+    const clamped = Math.max(18, Math.min(80, rawVal + jitter));
     setAge(clamped);
   };
 
   return (
     <div className="win-window">
-      <div className="win-titlebar">
+      <div className="win-titlebar" style={{ background: 'linear-gradient(90deg, #1e1b4b, #4338ca)' }}>
         <div className="win-title-left">
-          <span>🛡️</span>
-          <span>HUMAN VERIFICATION: {recipientNickname}</span>
+          <span>🎲</span>
+          <span>D'ARBY CASINO: STAND TEST - {recipientNickname}</span>
         </div>
         <div className="win-title-btn">?</div>
       </div>
 
       <div className="win-body">
-        <div className="win-inset" style={{ marginBottom: '12px' }}>
-          <p style={{ fontWeight: 'bold', fontSize: '0.9rem', marginBottom: '4px' }}>
-            Select all squares containing a <span style={{ color: '#d9534f', textDecoration: 'underline' }}>HEALTHY SLEEP SCHEDULE</span>:
-          </p>
-          <p style={{ fontSize: '0.78rem', color: '#666' }}>
-            If none are present, click verify anyway to test your delusion level.
+        <div className="win-inset" style={{ marginBottom: '12px', background: '#f5f3ff', border: '2px solid #6366f1' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <span style={{ fontWeight: '900', fontSize: '0.88rem', color: '#312e81' }}>
+              Select all squares containing an <span style={{ color: '#ec4899', textDecoration: 'underline' }}>UNDENIABLE JOJO REFERENCE</span>:
+            </span>
+            <span className="jojo-menacing" style={{ fontSize: '1.1rem' }}>ゴゴ</span>
+          </div>
+          <p style={{ fontSize: '0.75rem', color: '#4338ca', marginTop: '3px' }}>
+            D'Arby demands proof that your Stand is worthy of cutting the cake.
           </p>
         </div>
 
@@ -84,15 +85,15 @@ export default function CaptchaModal({ recipientName, recipientNickname, initial
           gap: '6px',
           marginBottom: '12px'
         }}>
-          {CAPTCHA_TILES.map((tile) => {
+          {JOJO_CAPTCHA_TILES.map((tile) => {
             const isSelected = selectedTiles.includes(tile.id);
             return (
               <div
                 key={tile.id}
                 onClick={() => toggleTile(tile.id)}
                 style={{
-                  background: isSelected ? '#a0c4ff' : '#ffffff',
-                  border: isSelected ? '3px solid #000080' : '2px solid #808080',
+                  background: isSelected ? '#ddd6fe' : '#ffffff',
+                  border: isSelected ? '3px solid #6b21a8' : '2px solid #94a3b8',
                   padding: '6px 4px',
                   display: 'flex',
                   flexDirection: 'column',
@@ -111,16 +112,17 @@ export default function CaptchaModal({ recipientName, recipientNickname, initial
                     top: '2px',
                     right: '2px',
                     fontSize: '10px',
-                    background: '#000080',
+                    background: '#6b21a8',
                     color: '#fff',
                     borderRadius: '2px',
-                    padding: '1px 3px',
+                    padding: '1px 4px',
+                    fontWeight: 'bold'
                   }}>
-                    ✓
+                    ゴ
                   </span>
                 )}
                 <span style={{ fontSize: '1.4rem', marginBottom: '2px' }}>{tile.icon}</span>
-                <span style={{ fontSize: '0.65rem', lineHeight: '1.1', fontWeight: isSelected ? 'bold' : 'normal' }}>
+                <span style={{ fontSize: '0.64rem', lineHeight: '1.15', fontWeight: isSelected ? '900' : 'normal', color: '#1e1b4b' }}>
                   {tile.label}
                 </span>
               </div>
@@ -130,11 +132,11 @@ export default function CaptchaModal({ recipientName, recipientNickname, initial
 
         {errorMessage && (
           <div style={{
-            background: '#ffdddd',
-            border: '2px solid #b22222',
+            background: '#fee2e2',
+            border: '2px solid #ef4444',
             padding: '6px 8px',
-            fontSize: '0.8rem',
-            color: '#8b0000',
+            fontSize: '0.78rem',
+            color: '#991b1b',
             fontWeight: 'bold',
             textAlign: 'center',
             marginBottom: '10px'
@@ -148,9 +150,9 @@ export default function CaptchaModal({ recipientName, recipientNickname, initial
             type="button"
             className="win-btn win-btn-primary"
             onClick={handleVerify}
-            style={{ flex: 1, fontSize: '0.85rem' }}
+            style={{ flex: 1, fontSize: '0.85rem', background: '#312e81' }}
           >
-            🔍 Verify Sleep Schedule
+            ⭐️ Check My Stand Power
           </button>
 
           {failCount >= 2 && (
@@ -158,52 +160,53 @@ export default function CaptchaModal({ recipientName, recipientNickname, initial
               type="button"
               className="win-btn"
               onClick={() => setFailCount(99)}
-              style={{ fontSize: '0.8rem', background: '#fff2a8' }}
+              style={{ fontSize: '0.78rem', background: '#fef08a' }}
             >
-              🏳️ Skip (I'm Cooked)
+              🏳️ Use Hermit Purple (Skip)
             </button>
           )}
         </div>
 
-        {/* Age Selector Section */}
-        <div className="win-inset" style={{ marginTop: '10px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-            <span style={{ fontSize: '0.82rem', fontWeight: 'bold' }}>Declared Age Counter:</span>
+        {/* JoJo Part Age Calibration */}
+        <div className="win-inset" style={{ marginTop: '8px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+            <span style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>Stand Awakening Level:</span>
             <span style={{
-              background: '#000',
-              color: '#00ff66',
+              background: '#312e81',
+              color: '#facc15',
               fontFamily: 'var(--font-mono)',
-              padding: '2px 6px',
+              padding: '2px 8px',
               fontWeight: 'bold',
-              fontSize: '1rem',
+              fontSize: '0.95rem',
             }}>
-              {age} YRS
+              LEVEL {age}
             </span>
           </div>
 
           <input
             type="range"
             min="18"
-            max="80"
+            max="60"
             value={age}
             onChange={handleAgeChange}
             style={{ width: '100%', cursor: 'pointer' }}
           />
 
-          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.72rem', color: '#555', marginTop: '4px' }}>
-            <span>Young Adult</span>
-            <span>Unc Territory</span>
-            <span>Ancient Fossil</span>
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.68rem', color: '#475569', marginTop: '3px' }}>
+            <span>Phantom Blood</span>
+            <span>Stardust Crusader</span>
+            <span>Golden Wind</span>
           </div>
 
           <div style={{
             marginTop: '8px',
             fontSize: '0.75rem',
-            background: '#f0f0f0',
+            background: '#e0e7ff',
             padding: '4px 6px',
-            border: '1px solid #ccc'
+            border: '1px solid #c7d2fe',
+            color: '#3730a3'
           }}>
-            ⚡ Estimated joint stiffness rating: <strong>{Math.round(age * 2.1)}%</strong>
+            ⚡ Stand Energy: <strong>+{age * 120} Hamon Units</strong> | Seeder Aura: <strong>MAX</strong>
           </div>
         </div>
 
@@ -211,9 +214,9 @@ export default function CaptchaModal({ recipientName, recipientNickname, initial
           type="button"
           className="win-btn win-btn-primary"
           onClick={() => onComplete(age)}
-          style={{ width: '100%', marginTop: '12px', padding: '10px', fontSize: '0.95rem' }}
+          style={{ width: '100%', marginTop: '12px', padding: '10px', fontSize: '0.92rem', background: '#4c1d95' }}
         >
-          🎂 PROCEED TO BIRTHDAY CAKE CUTTING 🎂
+          🎂 OH? APPROACH THE BIRTHDAY CAKE! 🎂
         </button>
       </div>
     </div>
