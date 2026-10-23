@@ -1,18 +1,17 @@
 /*
- * Stage 1: Mandatory Life Audit and Terms of Existence modal.
- * Forces the user to accept aging checkboxes before continuing.
- * Includes an evasive Decline button that translates away from touches/pointers
- * and emits haptic feedback when interacted with on supported devices.
+ * Stage 1: JoJo-themed Stand Encounter and Terms of Existence modal.
+ * Forces acceptance of gamer posture, pirate torrenting, and manga/JoJo clauses.
+ * Features an evasive 'Nigerundayo' decline button and explicit subtext on the confirmation button.
  */
 
 import { useState, useRef } from 'react';
 
 export default function CookieModal({ recipientName, recipientNickname, onAccept, onShake }) {
   const [agreedItems, setAgreedItems] = useState({
-    neckPain: false,
-    uncStatus: false,
-    sleepLie: false,
-    loudMusic: false,
+    shrimpPosture: false,
+    torrentSeeder: false,
+    jojoOpening: false,
+    yareYare: false,
   });
 
   const [declineOffset, setDeclineOffset] = useState({ x: 0, y: 0 });
@@ -32,95 +31,97 @@ export default function CookieModal({ recipientName, recipientNickname, onAccept
     }
     if (onShake) onShake();
 
-    const maxDelta = 120;
+    const maxDelta = 110;
     const randomX = (Math.random() - 0.5) * maxDelta * 2;
     const randomY = (Math.random() - 0.5) * maxDelta * 2;
 
     setDeclineOffset({ x: randomX, y: randomY });
 
     const insults = [
-      'Nice try, aging is mandatory!',
-      'Button escaped!',
-      'Error 403: Time travel forbidden',
-      'The years start coming and they do not stop coming!',
-      'Cannot decline reality, AKS!',
+      'MUDA MUDA MUDA! Aging is unavoidable!',
+      'KONO DIO DA! You cannot escape this birthday!',
+      'NIGERUNDAYO didn\'t work! Joseph Joestar is disappointed!',
+      'ZA WARUDO! The Decline button has been frozen!',
+      'WRYYYYYY! Stand proud and accept your fate, AKS!',
     ];
     setTrollMessage(insults[Math.floor(Math.random() * insults.length)]);
   };
 
   return (
-    <div className="win-window" style={{ marginTop: '20px' }}>
-      <div className="win-titlebar">
+    <div className="win-window" style={{ marginTop: '15px' }}>
+      <div className="win-titlebar" style={{ background: 'linear-gradient(90deg, #4c1d95, #7c3aed)' }}>
         <div className="win-title-left">
-          <span>⚠️</span>
-          <span>SYSTEM AUDIT: {recipientName} ({recipientNickname})</span>
+          <span>⭐️</span>
+          <span>STAND BATTLE: {recipientName} ({recipientNickname})</span>
         </div>
         <div className="win-title-btn" onClick={dodgeDecline}>✕</div>
       </div>
 
       <div className="win-body">
-        <div className="win-inset" style={{ marginBottom: '14px', background: '#ffffd0', border: '2px solid #b8860b' }}>
-          <p style={{ fontWeight: 'bold', fontSize: '0.95rem', color: '#8b0000', marginBottom: '6px' }}>
-            🔔 URGENT NOTICE FOR AKSHAT SINHA (AKS)
-          </p>
-          <p style={{ fontSize: '0.85rem', lineHeight: '1.4' }}>
-            System scan detected an illegal increment to your Age counter.
-            To claim your annual birthday privileges, you must consent to the updated Terms of Existence.
+        <div className="win-inset" style={{ marginBottom: '12px', background: '#faf5ff', border: '2px solid #7c3aed' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+            <span style={{ fontWeight: '900', color: '#6b21a8', fontSize: '0.9rem' }}>
+              ゴゴゴ ENEMY STAND ENCOUNTER ゴゴゴ
+            </span>
+            <span className="jojo-menacing" style={{ fontSize: '1.2rem' }}>ゴゴゴ</span>
+          </div>
+          <p style={{ fontSize: '0.82rem', lineHeight: '1.4', color: '#3b0764' }}>
+            You thought this was an ordinary birthday website, but <strong>KONO DIO DA!</strong> An enemy Stand has intercepted <strong>{recipientName} (AKS)</strong>. Verify your credentials below to proceed.
           </p>
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '16px' }}>
-          <label style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', cursor: 'pointer', fontSize: '0.85rem' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '9px', marginBottom: '14px' }}>
+          <label style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', cursor: 'pointer', fontSize: '0.82rem' }}>
             <input
               type="checkbox"
-              checked={agreedItems.neckPain}
-              onChange={() => toggleCheck('neckPain')}
-              style={{ marginTop: '3px' }}
+              checked={agreedItems.shrimpPosture}
+              onChange={() => toggleCheck('shrimpPosture')}
+              style={{ marginTop: '2px' }}
             />
-            <span>I acknowledge that sleeping in the wrong posture will incur 3-5 business days of neck stiffness.</span>
+            <span>I acknowledge that my coding & gaming posture resembles a curved JoJo pose (Shrimp Edition) 🦐</span>
           </label>
 
-          <label style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', cursor: 'pointer', fontSize: '0.85rem' }}>
+          <label style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', cursor: 'pointer', fontSize: '0.82rem' }}>
             <input
               type="checkbox"
-              checked={agreedItems.uncStatus}
-              onChange={() => toggleCheck('uncStatus')}
-              style={{ marginTop: '3px' }}
+              checked={agreedItems.torrentSeeder}
+              onChange={() => toggleCheck('torrentSeeder')}
+              style={{ marginTop: '2px' }}
             />
-            <span>I agree that Akshat Sinha (AKS) has officially crossed into the "Unc" category.</span>
+            <span>I swear upon the Speedwagon Foundation that my 24/7 qBittorrent seeding is purely academic 🏴‍☠️</span>
           </label>
 
-          <label style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', cursor: 'pointer', fontSize: '0.85rem' }}>
+          <label style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', cursor: 'pointer', fontSize: '0.82rem' }}>
             <input
               type="checkbox"
-              checked={agreedItems.sleepLie}
-              onChange={() => toggleCheck('sleepLie')}
-              style={{ marginTop: '3px' }}
+              checked={agreedItems.jojoOpening}
+              onChange={() => toggleCheck('jojoOpening')}
+              style={{ marginTop: '2px' }}
             />
-            <span>I admit that "I will fix my sleep schedule tonight" has been pure fiction since 2019.</span>
+            <span>I accept that skipping any JoJo opening theme is an unpardonable sin punished by a 7-page Muda ⭐️</span>
           </label>
 
-          <label style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', cursor: 'pointer', fontSize: '0.85rem' }}>
+          <label style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', cursor: 'pointer', fontSize: '0.82rem' }}>
             <input
               type="checkbox"
-              checked={agreedItems.loudMusic}
-              onChange={() => toggleCheck('loudMusic')}
-              style={{ marginTop: '3px' }}
+              checked={agreedItems.yareYare}
+              onChange={() => toggleCheck('yareYare')}
+              style={{ marginTop: '2px' }}
             />
-            <span>I authorize the state to send me unsolicited brochure mailings for orthopedic mattresses.</span>
+            <span>I confirm that whenever code doesn't compile on the first try, I sigh and mutter "Yare Yare Daze".</span>
           </label>
         </div>
 
         {trollMessage && (
           <div style={{
-            background: '#ffdddd',
-            border: '2px dashed #d9534f',
-            padding: '6px 10px',
-            color: '#a94442',
+            background: '#fef2f2',
+            border: '2px dashed #ef4444',
+            padding: '6px 8px',
+            color: '#b91c1c',
             fontWeight: 'bold',
-            fontSize: '0.85rem',
+            fontSize: '0.82rem',
             textAlign: 'center',
-            marginBottom: '12px'
+            marginBottom: '10px'
           }}>
             {trollMessage}
           </div>
@@ -132,26 +133,36 @@ export default function CookieModal({ recipientName, recipientNickname, onAccept
           gap: '10px',
           alignItems: 'stretch',
           position: 'relative',
-          minHeight: '100px',
+          minHeight: '110px',
           justifyContent: 'center'
         }}>
+          {/* Primary Accept Button with specific required text */}
           <button
             type="button"
             className="win-btn win-btn-primary"
             disabled={!allAgreed}
             onClick={onAccept}
             style={{
-              padding: '12px',
+              padding: '12px 8px',
               opacity: allAgreed ? 1 : 0.6,
-              fontSize: '1rem',
-              backgroundColor: allAgreed ? '#2e7d32' : '#808080',
+              backgroundColor: allAgreed ? '#5b21b6' : '#808080',
               color: '#fff',
-              cursor: allAgreed ? 'pointer' : 'not-allowed'
+              cursor: allAgreed ? 'pointer' : 'not-allowed',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: '3px'
             }}
           >
-            {allAgreed ? '✅ ACCEPT REALITY & CLAIM GIFT' : '⚠️ CHECK ALL BOXES TO PROCEED'}
+            <span style={{ fontSize: '0.95rem', fontWeight: '900' }}>
+              {allAgreed ? '✅ ACCEPT REALITY & CLAIM GIFT' : '⚠️ CHECK ALL BOXES TO PROCEED'}
+            </span>
+            <span style={{ fontSize: '0.75rem', fontStyle: 'italic', opacity: 0.9 }}>
+              (also I accept that I am akhand tatti)
+            </span>
           </button>
 
+          {/* Evasive Nigerundayo Runaway Button */}
           <div style={{ position: 'relative', textAlign: 'center', height: '40px' }}>
             <button
               ref={declineBtnRef}
@@ -171,7 +182,7 @@ export default function CookieModal({ recipientName, recipientNickname, onAccept
                 whiteSpace: 'nowrap'
               }}
             >
-              🚫 Decline & Stay 18 Forever
+              🏃‍♂️ NIGERUNDAYO! (Escape Birthday)
             </button>
           </div>
         </div>
