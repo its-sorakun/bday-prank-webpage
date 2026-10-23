@@ -170,7 +170,7 @@ export default function CaptchaModal({ recipientName, recipientNickname, initial
         {/* JoJo Part Age Calibration */}
         <div className="win-inset" style={{ marginTop: '8px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
-            <span style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>Stand Awakening Level:</span>
+            <span style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>Your Age is:</span>
             <span style={{
               background: '#312e81',
               color: '#facc15',
