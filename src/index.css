@@ -1,0 +1,280 @@
+/*
+ * Core design system and global stylesheet for the prank birthday application.
+ * Implements retro Windows XP/98 styling, brutalist dank meme aesthetics,
+ * mobile responsive viewport layouts, shake animations, and CRT scanline overlays.
+ * Strictly avoids glassmorphism in accordance with project constraints.
+ */
+
+:root {
+  --win-gray: #c0c0c0;
+  --win-dark: #808080;
+  --win-darker: #404040;
+  --win-light: #ffffff;
+  --win-blue-start: #000080;
+  --win-blue-end: #1084d0;
+  --win-xp-green: #3a9d23;
+  --genshin-gold: #e5b95c;
+  --genshin-purple: #9c68c9;
+  --genshin-blue: #4a8cd8;
+  --neon-yellow: #ffee00;
+  --neon-pink: #ff007f;
+  --neon-cyan: #00f0ff;
+  --bg-color: #008080; /* Classic Windows teal */
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-mono: 'Share Tech Mono', monospace;
+  --font-main: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-retro: "Comic Sans MS", "Comic Neue", cursive, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  background-color: var(--bg-color);
+  font-family: var(--font-main);
+  color: #000;
+  user-select: none;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: var(--bg-color);
+  background-image: 
+    linear-gradient(45deg, #007070 25%, transparent 25%), 
+    linear-gradient(-45deg, #007070 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, #007070 75%), 
+    linear-gradient(-45deg, transparent 75%, #007070 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+/* Screen shake animation triggered during errors and cake taps */
+.screen-shake {
+  animation: shake 0.35s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+  10%, 90% { transform: translate3d(-3px, 0, 0) rotate(-1deg); }
+  20%, 80% { transform: translate3d(4px, 0, 0) rotate(1.5deg); }
+  30%, 50%, 70% { transform: translate3d(-5px, 0, 0) rotate(-1.5deg); }
+  40%, 60% { transform: translate3d(5px, 0, 0) rotate(1deg); }
+}
+
+/* Retro Windows Window Component */
+.win-window {
+  background: var(--win-gray);
+  border-top: 3px solid var(--win-light);
+  border-left: 3px solid var(--win-light);
+  border-right: 3px solid #000;
+  border-bottom: 3px solid #000;
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.4);
+  padding: 3px;
+  max-width: 95vw;
+  width: 500px;
+  margin: 15px auto;
+  position: relative;
+}
+
+.win-titlebar {
+  background: linear-gradient(90deg, var(--win-blue-start), var(--win-blue-end));
+  color: white;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-main);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+}
+
+.win-title-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.win-title-btn {
+  width: 20px;
+  height: 20px;
+  background: var(--win-gray);
+  border-top: 2px solid var(--win-light);
+  border-left: 2px solid var(--win-light);
+  border-right: 2px solid #000;
+  border-bottom: 2px solid #000;
+  font-weight: bold;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.win-title-btn:active {
+  border-top: 2px solid #000;
+  border-left: 2px solid #000;
+  border-right: 2px solid var(--win-light);
+  border-bottom: 2px solid var(--win-light);
+}
+
+.win-body {
+  padding: 16px;
+  background: var(--win-gray);
+}
+
+.win-inset {
+  background: #ffffff;
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-right: 2px solid var(--win-light);
+  border-bottom: 2px solid var(--win-light);
+  padding: 12px;
+}
+
+/* Retro Buttons */
+.win-btn {
+  background: var(--win-gray);
+  border-top: 2px solid var(--win-light);
+  border-left: 2px solid var(--win-light);
+  border-right: 2px solid #000;
+  border-bottom: 2px solid #000;
+  padding: 8px 16px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.win-btn:active, .win-btn.pressed {
+  border-top: 2px solid #000;
+  border-left: 2px solid #000;
+  border-right: 2px solid var(--win-light);
+  border-bottom: 2px solid var(--win-light);
+  transform: translate(1px, 1px);
+}
+
+.win-btn-primary {
+  background: #000080;
+  color: #fff;
+  border-color: #5555ff #000 #000 #5555ff;
+}
+
+.win-btn-primary:active {
+  background: #000060;
+  border-color: #000 #5555ff #5555ff #000;
+}
+
+.win-btn-danger {
+  background: #b22222;
+  color: #fff;
+  border-color: #ff6347 #500 #500 #ff6347;
+}
+
+/* Top Marquee Bar */
+.retro-marquee {
+  background: #ffff00;
+  color: #000;
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  padding: 6px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  border-bottom: 3px solid #000;
+  font-weight: bold;
+}
+
+.marquee-content {
+  display: inline-block;
+  animation: marquee-scroll 18s linear infinite;
+}
+
+@keyframes marquee-scroll {
+  0% { transform: translateX(100vw); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Glitch text effect */
+.glitch-text {
+  position: relative;
+  font-family: var(--font-pixel);
+  color: #ff0055;
+  text-shadow: 2px 2px #00f0ff, -2px -2px #ffee00;
+}
+
+/* Windows Taskbar */
+.win-taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: var(--win-gray);
+  border-top: 3px solid var(--win-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 6px;
+  z-index: 9999;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.3);
+}
+
+.taskbar-start {
+  background: linear-gradient(180deg, #388e3c, #1b5e20);
+  color: #fff;
+  border-top: 2px solid #81c784;
+  border-left: 2px solid #81c784;
+  border-right: 2px solid #003300;
+  border-bottom: 2px solid #003300;
+  padding: 4px 12px;
+  font-weight: 900;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.taskbar-tray {
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-right: 2px solid var(--win-light);
+  border-bottom: 2px solid var(--win-light);
+  padding: 2px 8px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  background: var(--win-gray);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 600px) {
+  .win-window {
+    width: 95vw;
+    margin: 8px auto;
+  }
+  .win-body {
+    padding: 10px;
+  }
+}
