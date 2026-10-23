@@ -100,7 +100,7 @@ export default function BirthdayShrine({ recipientName, recipientNickname, age, 
             {/* Stand Stats Breakdown (JoJo Parameters) */}
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(2, 1fr)',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(135px, 1fr))',
               gap: '8px',
               textAlign: 'left',
               fontSize: '0.78rem',
