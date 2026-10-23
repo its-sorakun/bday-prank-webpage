@@ -31,9 +31,11 @@ export default function CookieModal({ recipientName, recipientNickname, onAccept
     }
     if (onShake) onShake();
 
-    const maxDelta = 110;
-    const randomX = (Math.random() - 0.5) * maxDelta * 2;
-    const randomY = (Math.random() - 0.5) * maxDelta * 2;
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 500;
+    const maxDeltaX = isMobile ? 35 : 85;
+    const maxDeltaY = isMobile ? 25 : 55;
+    const randomX = (Math.random() - 0.5) * maxDeltaX * 2;
+    const randomY = (Math.random() - 0.5) * maxDeltaY * 2;
 
     setDeclineOffset({ x: randomX, y: randomY });
 
