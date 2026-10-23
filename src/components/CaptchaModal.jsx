@@ -55,6 +55,15 @@ export default function CaptchaModal({ recipientName, recipientNickname, initial
     setAge(clamped);
   };
 
+  const handleHermitPurpleSkip = () => {
+    if (navigator.vibrate) navigator.vibrate([100, 50, 200]);
+    if (onShake) onShake();
+    setErrorMessage('🔮 HERMIT PURPLE OVERDRIVE: Joseph Joestar spirit-photographed the cake! Bypassing verification...');
+    setTimeout(() => {
+      onComplete(age);
+    }, 550);
+  };
+
   return (
     <div className="win-window">
       <div className="win-titlebar" style={{ background: 'linear-gradient(90deg, #1e1b4b, #4338ca)' }}>
@@ -132,11 +141,11 @@ export default function CaptchaModal({ recipientName, recipientNickname, initial
 
         {errorMessage && (
           <div style={{
-            background: '#fee2e2',
-            border: '2px solid #ef4444',
+            background: errorMessage.startsWith('🔮') ? '#f0fdf4' : '#fee2e2',
+            border: errorMessage.startsWith('🔮') ? '2px solid #22c55e' : '2px solid #ef4444',
             padding: '6px 8px',
             fontSize: '0.78rem',
-            color: '#991b1b',
+            color: errorMessage.startsWith('🔮') ? '#166534' : '#991b1b',
             fontWeight: 'bold',
             textAlign: 'center',
             marginBottom: '10px'
@@ -159,10 +168,10 @@ export default function CaptchaModal({ recipientName, recipientNickname, initial
             <button
               type="button"
               className="win-btn"
-              onClick={() => setFailCount(99)}
-              style={{ fontSize: '0.78rem', background: '#fef08a' }}
+              onClick={handleHermitPurpleSkip}
+              style={{ fontSize: '0.78rem', background: '#fef08a', color: '#854d0e', fontWeight: 'bold' }}
             >
-              🏳️ Use Hermit Purple (Skip)
+              🔮 Use Hermit Purple (Skip)
             </button>
           )}
         </div>
