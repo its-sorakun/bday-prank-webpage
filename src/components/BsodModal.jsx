@@ -1,7 +1,7 @@
 /*
- * Retro Windows Blue Screen of Death (BSOD) transition component.
- * Displays a realistic Windows crash screen with customized age-related stop codes.
- * Tapping or clicking triggers a simulated reboot into the grand finale shrine.
+ * JoJo-themed Windows Blue Screen of Death (BSOD) transition component.
+ * Displays custom Stand crash stop codes, shrimp posture alerts, and the iconic
+ * vintage 'To Be Continued' arrow. Tapping triggers a reboot into the finale shrine.
  */
 
 export default function BsodModal({ recipientName, recipientNickname, age, onReboot }) {
@@ -22,7 +22,7 @@ export default function BsodModal({ recipientName, recipientNickname, age, onReb
         cursor: 'pointer',
         overflowY: 'auto',
         lineHeight: '1.4',
-        fontSize: '0.9rem',
+        fontSize: '0.88rem',
       }}
     >
       <div style={{ maxWidth: '750px', margin: '0 auto' }}>
@@ -34,48 +34,61 @@ export default function BsodModal({ recipientName, recipientNickname, age, onReb
           fontWeight: 'bold',
           marginBottom: '16px'
         }}>
-          WINDOWS YOUTH_EXCEPTION
+          WINDOWS STAND_OVERFLOW_EXCEPTION
         </div>
 
         <p style={{ marginBottom: '14px' }}>
-          A problem has been detected and YOUTH has been shut down to prevent damage to <strong>{recipientName} ({recipientNickname})</strong>'s lower back.
+          A critical Stand clash occurred and system execution was halted to prevent irreversible damage to <strong>{recipientName} ({recipientNickname})</strong>'s shrimp posture.
         </p>
 
         <p style={{ marginBottom: '14px' }}>
-          The problem seems to be caused by the following driver: <code>unc_status.sys</code>
+          The fault was triggered by the following driver: <code>qbit_platinum.sys</code>
         </p>
 
         <p style={{ marginBottom: '14px', color: '#ffff55', fontWeight: 'bold' }}>
-          ERROR_CODE: AGE_OVERFLOW_EXCEPTION (Level {age} Detected)
+          STOP_CODE: 0x00000JOJO (KONO_DIO_DA_DETECTED, LEVEL {age})
         </p>
 
         <p style={{ marginBottom: '10px' }}>
-          If this is the first time you've experienced this birthday Stop error:
+          If this is the first time you've experienced this Stand crash:
         </p>
 
         <ul style={{ marginLeft: '20px', marginBottom: '16px' }}>
-          <li>Ensure that sufficient ibuprofen and orthopedic pillows are installed.</li>
-          <li>Disable any attempts to pull an all-nighter or jump down stairs two steps at a time.</li>
-          <li>If symptoms of asking "Who is playing this loud music?" persist, contact your nearest geriatric center.</li>
+          <li>Killer Queen has already touched your lumbar spine. Straighten your back immediately.</li>
+          <li>Pause all 47 active qBittorrent manga downloads and check your seeder ratio.</li>
+          <li>If symptoms of yelling "ZA WARUDO" during code compilation persist, consult Jotaro Kujo.</li>
         </ul>
 
         <p style={{ marginBottom: '14px' }}>
           Technical Information:
         </p>
 
-        <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', marginBottom: '20px', color: '#a0c4ff' }}>
-          *** STOP: 0x00000OLD (0x00000AKS, 0x00000HBD, 0x00000AGE{age}, 0xCRACKING_KNEES)<br/>
-          *** unc_status.sys - Address F86B5A8E base at F86B5000, DateStamp 20261023
+        <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.82rem', marginBottom: '22px', color: '#a0c4ff' }}>
+          *** STOP: 0x00000JOJO (0xKONO_DIO_DA, 0xSHRIMP_POSTURE, 0x1337X_TORRENT, 0xLEVEL_{age})<br/>
+          *** speedwagon_core.dll - Base at 0xF86B5000, DateStamp 20261023
         </p>
 
+        {/* JoJo To Be Continued Arrow */}
         <div style={{
-          border: '2px dashed #ffffff',
-          padding: '12px',
-          textAlign: 'center',
-          backgroundColor: '#000088',
-          animation: 'pulse 1s infinite alternate'
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: '12px',
+          marginTop: '20px'
         }}>
-          👉 [ TAP ANYWHERE TO REBOOT INTO BIRTHDAY CELEBRATION ] 👈
+          <div className="jojo-tbc-arrow">
+            <span>⬅️</span>
+            <span>To Be Continued</span>
+          </div>
+
+          <div style={{
+            color: '#ffff00',
+            fontWeight: 'bold',
+            animation: 'pulse 1s infinite alternate'
+          }}>
+            👉 [ TAP ANYWHERE TO REBOOT INTO FINALE ] 👈
+          </div>
         </div>
       </div>
     </div>
