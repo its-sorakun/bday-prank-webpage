@@ -76,7 +76,6 @@ export default function App() {
           🚨 ゴゴゴ JOJO STAND ALERT: STAND USER DETECTED IN PROXIMITY 🚨 STAND: [ qBit Platinum Over Heaven ] 🚨 MASTER: {recipientName.toUpperCase()} ({recipientNickname.toUpperCase()}) 🚨 KONO DIO DA 🚨 NIGERUNDAYO SMOKEY 🚨 1337X SEED RATIO: 0.01 🚨
         </div>
       </div>
-
       {/* Main Content Area */}
       <main style={{
         flex: 1,
@@ -84,7 +83,8 @@ export default function App() {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '12px 10px 60px',
+        padding: '8px 8px 75px',
+        width: '100%',
       }}>
         {stage === 'cookie' && (
           <CookieModal
@@ -159,7 +159,12 @@ export default function App() {
             className="taskbar-start"
             onClick={() => setStartMenuOpen(!startMenuOpen)}
           >
-            <span>🪟</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0 }}>
+              <path d="M1 2.5L7 1.5V7.5L1 8V2.5Z" fill="#ff3333" />
+              <path d="M8.5 1.5L15 2.5V8L8.5 7.5V1.5Z" fill="#33cc33" />
+              <path d="M1 9L7 8.5V14.5L1 13.5V9Z" fill="#3399ff" />
+              <path d="M8.5 8.5L15 9V14.5L8.5 13.5V8.5Z" fill="#ffcc00" />
+            </svg>
             <span>Start</span>
           </button>
 
@@ -168,51 +173,95 @@ export default function App() {
               position: 'absolute',
               bottom: '42px',
               left: '0',
-              width: '210px',
+              width: '240px',
+              maxWidth: '90vw',
               background: 'var(--win-gray)',
               borderTop: '2px solid var(--win-light)',
               borderLeft: '2px solid var(--win-light)',
               borderRight: '2px solid #000',
               borderBottom: '2px solid #000',
-              boxShadow: '3px 3px 6px rgba(0,0,0,0.4)',
+              boxShadow: '4px 4px 10px rgba(0,0,0,0.5)',
               zIndex: 10000,
-              fontSize: '0.85rem'
+              fontSize: '0.82rem'
             }}>
               <div style={{
                 background: 'linear-gradient(180deg, #4c1d95, #6d28d9)',
-                color: '#fff',
-                padding: '8px',
-                fontWeight: 'bold',
-                fontFamily: 'var(--font-mono)'
+                color: '#facc15',
+                padding: '8px 10px',
+                fontWeight: '900',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.8rem',
+                borderBottom: '2px solid #3b0764'
               }}>
-                SPEEDWAGON OS 2026
+                SPEEDWAGON OS 2026 • AKS
               </div>
+
               <div
-                style={{ padding: '8px 12px', cursor: 'pointer', borderBottom: '1px solid #aaa' }}
+                className="start-menu-item"
                 onClick={() => {
-                  alert(`User: ${recipientName} (${recipientNickname})\nStand: [ qBit Platinum ]\nPosture: Shrimp Tier\nDiagnosis: Spine bent like a question mark.`);
+                  alert("🗑️ RECYCLE BIN ERROR:\nSleep schedule was permanently shredded in 2019.\nReason: 'Just one more episode / game'.\nRecovery: IMPOSSIBLE.");
                   setStartMenuOpen(false);
                 }}
               >
-                📁 Speedwagon Posture Audit
+                <span>🗑️</span>
+                <span>Sleep Schedule.bin</span>
               </div>
+
               <div
-                style={{ padding: '8px 12px', cursor: 'pointer', borderBottom: '1px solid #aaa' }}
+                className="start-menu-item"
                 onClick={() => {
-                  alert('qBittorrent: 42 active torrents.\nDownload: 1337x VIP\nSeed Ratio: 0.001 (Pure Leecher)\nResin: 0/160.\nPaimon: "Yare yare daze."');
+                  alert("🏴‍☠️ qBittorrent v4.6.0:\nDownloading: JoJo_Part_9_Full_Color_[FitGirl_Repack].torrent\nDownloaded: 99.8%\nSeeders: 0 | Leechers: 142\nETA: 48 years, 3 months.");
                   setStartMenuOpen(false);
                 }}
               >
-                ✨ 1337x / Genshin Status
+                <span>🏴‍☠️</span>
+                <span>qBittorrent (120GB)</span>
               </div>
+
               <div
-                style={{ padding: '8px 12px', cursor: 'pointer', color: '#b22222', fontWeight: 'bold' }}
+                className="start-menu-item"
+                onClick={() => {
+                  alert("🦐 CRITICAL POSTURE WARNING:\nSpine.dll has crashed.\nCurrent posture angle: 120° (Boiled Tiger Shrimp).\nPlease stand up and crack joints immediately.");
+                  setStartMenuOpen(false);
+                }}
+              >
+                <span>🦐</span>
+                <span>Posture_Fix.exe</span>
+              </div>
+
+              <div
+                className="start-menu-item"
+                onClick={() => {
+                  alert("🧚 Paimon:\nResin: 0/160 | Primogems: 0 | Pity: 0\nPaimon suggests touching actual grass and eating birthday cake.");
+                  setStartMenuOpen(false);
+                }}
+              >
+                <span>🧚</span>
+                <span>Genshin_Pain.lnk</span>
+              </div>
+
+              <div
+                className="start-menu-item"
+                onClick={() => {
+                  triggerShake();
+                  alert("⭐️ STAND ENERGY RELEASED!\nゴゴゴ Menacing aura increased by 10,000 units!\nAkshat Sinha has assumed the Chad pose.");
+                  setStartMenuOpen(false);
+                }}
+              >
+                <span>⭐️</span>
+                <span>JoJo_Poses.bat</span>
+              </div>
+
+              <div
+                className="start-menu-item"
+                style={{ color: '#b91c1c', fontWeight: 'bold' }}
                 onClick={() => {
                   setStage('bsod');
                   setStartMenuOpen(false);
                 }}
               >
-                ⚠️ Trigger Stand Crash (BSOD)
+                <span>⚠️</span>
+                <span>Trigger Stand Crash (BSOD)</span>
               </div>
             </div>
           )}
