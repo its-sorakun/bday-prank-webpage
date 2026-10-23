@@ -1,25 +1,45 @@
 /*
- * Stage 3: JoJo Menacing Birthday Cake with resurrecting trick candles.
- * Embeds animated JoJo menacing katakana (ゴゴゴ) and iconic battle dialogue.
- * Triggers pirate repack and posture error toasts when candles are tapped.
- * Provides a 7-Page Muda / Ora Ora emergency blower override.
+ * Stage 3: JoJo Menacing Birthday Cake with tactical YEET physics.
+ * Features dynamic candle flicking animations, floating comic SFX popups,
+ * animated JoJo menacing katakana, and a tactical rocket blastoff override
+ * that launches the cake into orbit.
  */
 
 import { useState } from 'react';
+
+const COMIC_WORDS = ['*YEET!*', '*ORA!*', '*MUDA!*', '*SPINE CRACK!*', '*0 SEEDERS!*', '*BONK!*', '*KONO DIO DA!*', '*AURA -500*'];
 
 export default function CandleCake({ recipientName, recipientNickname, age, onComplete, onShake }) {
   const [candles, setCandles] = useState([true, true, true, true, true]);
   const [tapCount, setTapCount] = useState(0);
   const [toastMessage, setToastMessage] = useState('');
   const [extinguishedAll, setExtinguishedAll] = useState(false);
+  const [yeetingCandleIndex, setYeetingCandleIndex] = useState(null);
+  const [isYeetingCake, setIsYeetingCake] = useState(false);
+  const [sfxList, setSfxList] = useState([]);
 
-  const blowCandle = (index) => {
-    if (extinguishedAll) return;
-    if (navigator.vibrate) navigator.vibrate([60, 30, 60]);
+  const spawnSfx = (e) => {
+    const rect = e?.currentTarget?.getBoundingClientRect?.();
+    const x = rect ? rect.left + rect.width / 2 : window.innerWidth / 2;
+    const y = rect ? rect.top : window.innerHeight / 2;
+    const word = COMIC_WORDS[Math.floor(Math.random() * COMIC_WORDS.length)];
+    const id = Date.now() + Math.random();
+
+    setSfxList((prev) => [...prev, { id, text: word, x, y }]);
+    setTimeout(() => {
+      setSfxList((prev) => prev.filter((item) => item.id !== id));
+    }, 750);
+  };
+
+  const blowCandle = (index, e) => {
+    if (extinguishedAll || isYeetingCake) return;
+    if (navigator.vibrate) navigator.vibrate([70, 30, 70]);
     if (onShake) onShake();
+    spawnSfx(e);
 
     const newTaps = tapCount + 1;
     setTapCount(newTaps);
+    setYeetingCandleIndex(index);
 
     setCandles((prev) => {
       const next = [...prev];
@@ -28,16 +48,17 @@ export default function CandleCake({ recipientName, recipientNickname, age, onCo
     });
 
     const jojoToasts = [
+      '🚀 YEET! Candle launched into orbit, but Stand gravity pulled it back!',
       '🔥 KONO CAKE DA! The flame resurrects with immortal Stand power!',
       '⚠️ FITGIRL REPACK WARNING: Candle decompressed at 99.8% — DO NOT PANIC.',
-      '🦐 POSTURE POLICE: Stand user spine angle critically curved! Straighten up, AKS!',
+      '🦐 POSTURE POLICE: Spine angle critically curved! Straighten up, AKS!',
       '⏳ ZA WARUDO! Time froze for 0.5s to restore the candle flame!',
       '🏴‍☠️ qBit_Platinum_Error: 0 seeders found for flame extinction.',
-      '👊 YARE YARE DAZE: Star Platinum cannot extinguish trick candles with normal wind.',
     ];
     setToastMessage(jojoToasts[newTaps % jojoToasts.length]);
 
     setTimeout(() => {
+      setYeetingCandleIndex(null);
       setCandles((prev) => {
         const next = [...prev];
         next[index] = true;
@@ -46,25 +67,38 @@ export default function CandleCake({ recipientName, recipientNickname, age, onCo
     }, 550);
   };
 
-  const handleMudaExtinguish = () => {
-    if (navigator.vibrate) navigator.vibrate([150, 50, 150, 50, 300]);
+  const handleTacticalYeet = () => {
+    if (isYeetingCake) return;
+    if (navigator.vibrate) navigator.vibrate([200, 80, 200, 80, 400]);
     if (onShake) onShake();
 
+    setIsYeetingCake(true);
     setCandles([false, false, false, false, false]);
     setExtinguishedAll(true);
-    setToastMessage('🚨 ARI ARI ARI ARI ARRIVEDERCI! 7-PAGE MUDA BLOW DEPLOYED! CAKE CLEARED!');
+    setToastMessage('🚀 TACTICAL YEET INITIATED! CAKE HAS ESCAPED EARTH GRAVITY!');
 
     setTimeout(() => {
       onComplete();
-    }, 1300);
+    }, 1200);
   };
 
   return (
     <div className="win-window">
+      {/* Floating Comic SFX Popups */}
+      {sfxList.map((sfx) => (
+        <div
+          key={sfx.id}
+          className="comic-sfx"
+          style={{ left: `${sfx.x}px`, top: `${sfx.y}px` }}
+        >
+          {sfx.text}
+        </div>
+      ))}
+
       <div className="win-titlebar" style={{ background: 'linear-gradient(90deg, #4c1d95, #6d28d9)' }}>
         <div className="win-title-left">
           <span>🎂</span>
-          <span>OH? YOU\'RE APPROACHING THE CAKE, {recipientNickname}?</span>
+          <span>OH? YOU'RE APPROACHING THE CAKE, {recipientNickname}?</span>
         </div>
         <div className="win-title-btn">✕</div>
       </div>
@@ -85,17 +119,22 @@ export default function CandleCake({ recipientName, recipientNickname, age, onCo
           </div>
         </div>
 
-        {/* Visual Cake Graphic with floating Menacing signs */}
-        <div style={{
-          position: 'relative',
-          width: '290px',
-          height: '210px',
-          margin: '0 auto 10px',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'flex-end',
-        }}>
+        {/* Visual Cake Graphic with Rocket Yeet Support */}
+        <div
+          className={isYeetingCake ? 'yeet-rocket' : ''}
+          style={{
+            position: 'relative',
+            width: '290px',
+            maxWidth: '100%',
+            height: '210px',
+            margin: '0 auto 10px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'flex-end',
+            transition: 'transform 0.1s ease',
+          }}
+        >
           {/* Side Menacing Kanji */}
           <div style={{ position: 'absolute', top: '10px', left: '0', zIndex: 10 }}>
             <span className="jojo-menacing" style={{ fontSize: '1.6rem' }}>ゴ</span>
@@ -113,43 +152,47 @@ export default function CandleCake({ recipientName, recipientNickname, age, onCo
             position: 'relative',
             zIndex: 5
           }}>
-            {candles.map((isLit, i) => (
-              <div
-                key={i}
-                onClick={() => blowCandle(i)}
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  cursor: 'pointer',
-                  padding: '4px',
-                  userSelect: 'none',
-                }}
-              >
-                <div style={{
-                  height: '24px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: isLit ? '1.3rem' : '1rem',
-                  filter: isLit ? 'drop-shadow(0 0 7px #ff9900)' : 'none',
-                  transform: isLit ? 'scaleY(1.1)' : 'scaleY(0.7)',
-                  transition: 'all 0.15s ease-out'
-                }}>
-                  {isLit ? '🔥' : '💨'}
-                </div>
+            {candles.map((isLit, i) => {
+              const isYeetingThis = yeetingCandleIndex === i;
+              return (
+                <div
+                  key={i}
+                  onClick={(e) => blowCandle(i, e)}
+                  className={isYeetingThis ? 'candle-yeeting' : ''}
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    cursor: 'pointer',
+                    padding: '4px',
+                    userSelect: 'none',
+                  }}
+                >
+                  <div style={{
+                    height: '24px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: isLit ? '1.3rem' : '1rem',
+                    filter: isLit ? 'drop-shadow(0 0 7px #ff9900)' : 'none',
+                    transform: isLit ? 'scaleY(1.1)' : 'scaleY(0.7)',
+                    transition: 'all 0.15s ease-out'
+                  }}>
+                    {isLit ? '🔥' : '💨'}
+                  </div>
 
-                <div style={{
-                  width: '12px',
-                  height: '38px',
-                  background: i % 2 === 0
-                    ? 'repeating-linear-gradient(45deg, #7c3aed, #7c3aed 5px, #facc15 5px, #facc15 10px)'
-                    : 'repeating-linear-gradient(45deg, #ec4899, #ec4899 5px, #ffffff 5px, #ffffff 10px)',
-                  border: '1px solid #333',
-                  borderRadius: '2px'
-                }} />
-              </div>
-            ))}
+                  <div style={{
+                    width: '12px',
+                    height: '38px',
+                    background: i % 2 === 0
+                      ? 'repeating-linear-gradient(45deg, #7c3aed, #7c3aed 5px, #facc15 5px, #facc15 10px)'
+                      : 'repeating-linear-gradient(45deg, #ec4899, #ec4899 5px, #ffffff 5px, #ffffff 10px)',
+                    border: '1px solid #333',
+                    borderRadius: '2px'
+                  }} />
+                </div>
+              );
+            })}
           </div>
 
           {/* Top Tier Cake */}
@@ -211,6 +254,7 @@ export default function CandleCake({ recipientName, recipientNickname, age, onCo
           {/* Cake Plate */}
           <div style={{
             width: '290px',
+            maxWidth: '100%',
             height: '12px',
             background: '#e2e8f0',
             border: '2px solid #718096',
@@ -236,22 +280,44 @@ export default function CandleCake({ recipientName, recipientNickname, age, onCo
           Candles Extinguished: <strong>0 / 5</strong> (Enemy Stand respawn rate: 100%)
         </div>
 
-        {tapCount >= 5 && !extinguishedAll && (
+        {/* Dual YEET & 7-Page Muda Override Buttons */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
           <button
             type="button"
             className="win-btn win-btn-danger"
-            onClick={handleMudaExtinguish}
+            onClick={handleTacticalYeet}
             style={{
               width: '100%',
               padding: '12px',
-              fontSize: '0.88rem',
-              background: '#701a75',
-              borderColor: '#d946ef #3b0764 #3b0764 #d946ef'
+              fontSize: '0.92rem',
+              background: 'linear-gradient(180deg, #dc2626, #991b1b)',
+              color: '#fff',
+              border: '2px solid #fecaca',
+              boxShadow: '0 3px 0 #000',
+              letterSpacing: '0.5px'
             }}
           >
-            👊 7-PAGE MUDA / ORA ORA BLOWER (FORCE EXTINGUISH)
+            🚀 TACTICAL YEET (SEND CAKE INTO ORBIT)
           </button>
-        )}
+
+          {tapCount >= 3 && !extinguishedAll && (
+            <button
+              type="button"
+              className="win-btn"
+              onClick={handleTacticalYeet}
+              style={{
+                width: '100%',
+                padding: '8px',
+                fontSize: '0.8rem',
+                background: '#701a75',
+                color: '#fff',
+                borderColor: '#d946ef #3b0764 #3b0764 #d946ef'
+              }}
+            >
+              👊 7-PAGE MUDA / ORA ORA BLOWER
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
