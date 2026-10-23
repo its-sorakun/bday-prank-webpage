@@ -220,6 +220,40 @@ html, body {
   text-shadow: 2px 2px #00f0ff, -2px -2px #ffee00;
 }
 
+/* JoJo Menacing Kanji Floating Animation */
+.jojo-menacing {
+  display: inline-block;
+  color: #7928ca;
+  font-weight: 900;
+  text-shadow: 2px 2px 0px #000, -1px -1px 0px #ff007f;
+  animation: menacing-float 1.8s infinite ease-in-out alternate;
+  user-select: none;
+}
+
+@keyframes menacing-float {
+  0% { transform: translateY(0px) rotate(-3deg) scale(1); }
+  50% { transform: translateY(-8px) rotate(4deg) scale(1.15); }
+  100% { transform: translateY(-2px) rotate(-2deg) scale(1.05); }
+}
+
+/* Classic JoJo To Be Continued Arrow */
+.jojo-tbc-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #2b1f14;
+  color: #d4a373;
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-family: 'Georgia', serif;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 0.95rem;
+  box-shadow: 3px 3px 0px #000;
+  border: 1px solid #d4a373;
+  letter-spacing: 1px;
+}
+
 /* Windows Taskbar */
 .win-taskbar {
   position: fixed;
