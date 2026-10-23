@@ -71,9 +71,9 @@ export default function App() {
   return (
     <div className={isShaking ? 'screen-shake' : ''} style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       {/* Top Scrolling Retro Marquee */}
-      <div className="retro-marquee">
+      <div className="retro-marquee" style={{ background: '#7c3aed', color: '#facc15', borderBottom: '3px solid #000' }}>
         <div className="marquee-content">
-          🚨 CRITICAL AUDIT: {recipientName.toUpperCase()} ({recipientNickname.toUpperCase()}) BIRTHDAY SYSTEM IN EFFECT 🚨 DO NOT POWER OFF YOUR DEVICE 🚨 RESINLESS BEHAVIOR DETECTED 🚨
+          🚨 ゴゴゴ JOJO STAND ALERT: STAND USER DETECTED IN PROXIMITY 🚨 STAND: [ qBit Platinum Over Heaven ] 🚨 MASTER: {recipientName.toUpperCase()} ({recipientNickname.toUpperCase()}) 🚨 KONO DIO DA 🚨 NIGERUNDAYO SMOKEY 🚨 1337X SEED RATIO: 0.01 🚨
         </div>
       </div>
 
@@ -179,31 +179,31 @@ export default function App() {
               fontSize: '0.85rem'
             }}>
               <div style={{
-                background: 'linear-gradient(180deg, #000080, #1084d0)',
+                background: 'linear-gradient(180deg, #4c1d95, #6d28d9)',
                 color: '#fff',
                 padding: '8px',
                 fontWeight: 'bold',
                 fontFamily: 'var(--font-mono)'
               }}>
-                AKS OS 2026.0
+                SPEEDWAGON OS 2026
               </div>
               <div
                 style={{ padding: '8px 12px', cursor: 'pointer', borderBottom: '1px solid #aaa' }}
                 onClick={() => {
-                  alert(`User: ${recipientName} (${recipientNickname})\nStatus: Level ${age}\nDiagnosis: Knee joints require WD-40.`);
+                  alert(`User: ${recipientName} (${recipientNickname})\nStand: [ qBit Platinum ]\nPosture: Shrimp Tier\nDiagnosis: Spine bent like a question mark.`);
                   setStartMenuOpen(false);
                 }}
               >
-                📁 Diagnostic Health Audit
+                📁 Speedwagon Posture Audit
               </div>
               <div
                 style={{ padding: '8px 12px', cursor: 'pointer', borderBottom: '1px solid #aaa' }}
                 onClick={() => {
-                  alert('Resin: 0/160. Primogems: 0. Pity: 0. Paimon says eat cake.');
+                  alert('qBittorrent: 42 active torrents.\nDownload: 1337x VIP\nSeed Ratio: 0.001 (Pure Leecher)\nResin: 0/160.\nPaimon: "Yare yare daze."');
                   setStartMenuOpen(false);
                 }}
               >
-                ✨ Genshin Status Check
+                ✨ 1337x / Genshin Status
               </div>
               <div
                 style={{ padding: '8px 12px', cursor: 'pointer', color: '#b22222', fontWeight: 'bold' }}
@@ -212,7 +212,7 @@ export default function App() {
                   setStartMenuOpen(false);
                 }}
               >
-                ⚠️ Force Crash (BSOD)
+                ⚠️ Trigger Stand Crash (BSOD)
               </div>
             </div>
           )}
