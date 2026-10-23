@@ -11,7 +11,7 @@ It follows a state-machine architecture where the user progresses through differ
 
 The user journey is structured as a progressive linear gauntlet rather than a traditional navigable website. Each stage acts as an interactive roadblock designed to subvert user expectations—starting with a JoJo-themed Stand encounter and "Terms of Existence" banner featuring an evasive Nigerundayo decline button, proceeding through an impossible D'Arby Casino verification challenge, and confronting unextinguishable cake candles guarded by floating menacing kanji. The gift reveal simulates a 50/50 Genshin wish loss to Dio and Qiqi before triggering an authentic vintage operating system crash screen with a "To Be Continued" arrow.
 
-Aesthetically, the project intentionally avoids modern design trends such as glassmorphism in favor of chaotic early-2000s desktop retroism, Windows-style beveled dialogs, and mobile-friendly touch traps. Once the simulated crash sequence reboots, the application locks into its celebratory finale state: an interactive digital shrine dedicated to Akshat Sinha (AKS) and his Stand [ qBit Platinum Over Heaven ], complete with Hamon confetti, ZA WARUDO screen-freezing, and pirate/shrimp posture accolades.
+Aesthetically, the project intentionally avoids modern design trends such as glassmorphism in favor of chaotic early-2000s desktop retroism, Windows-style beveled dialogs, and mobile-friendly touch traps. Once the simulated crash sequence reboots, the application locks into its celebratory finale state: an interactive digital shrine dedicated to the birthday boy and his Stand [ qBit Platinum Over Heaven ], complete with Hamon confetti, ZA WARUDO screen-freezing, and pirate/shrimp posture accolades.
 
 ## Setup & Running Locally
 
